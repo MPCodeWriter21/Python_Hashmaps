@@ -1,14 +1,16 @@
-from collections.abc import Generator, Iterator
-from dataclasses import dataclass, field
-from typing import Generic, Optional, cast
+from __future__ import annotations
 
-from .base import Chain, Comp_K, HashEntry, K, V, is_same
+from typing import Generic, Optional, cast
+from dataclasses import field, dataclass
+from collections.abc import Iterator, Generator
+
+from .base import K, V, Chain, Comp_K, HashEntry, is_same
 
 
 @dataclass(slots=True)
 class LinkedListNode(Generic[K, V]):
     data: HashEntry[K, V]
-    next: Optional["LinkedListNode[K, V]"] = field(
+    next: Optional[LinkedListNode[K, V]] = field(
         default=None, repr=False, compare=False
     )
 
@@ -16,18 +18,19 @@ class LinkedListNode(Generic[K, V]):
 @dataclass(slots=True)
 class BSTNode(Generic[Comp_K, V]):
     data: HashEntry[Comp_K, V]
-    left: Optional["BSTNode[Comp_K, V]"] = field(
+    left: Optional[BSTNode[Comp_K, V]] = field(
         default=None, repr=False, compare=False
     )
-    right: Optional["BSTNode[Comp_K, V]"] = field(
+    right: Optional[BSTNode[Comp_K, V]] = field(
         default=None, repr=False, compare=False
     )
-    parent: Optional["BSTNode[Comp_K, V]"] = field(
+    parent: Optional[BSTNode[Comp_K, V]] = field(
         default=None, repr=False, compare=False
     )
 
 
 class DynamicArray(Chain[K, V]):
+
     def __init__(self) -> None:
         self.lst: list[HashEntry[K, V]] = []
 
@@ -63,6 +66,7 @@ class DynamicArray(Chain[K, V]):
 
 
 class LinkedList(Chain[K, V]):
+
     def __init__(self) -> None:
         self.head: LinkedListNode[K, V] | None = None
         self.tail: LinkedListNode[K, V] | None = None
@@ -126,6 +130,7 @@ class LinkedList(Chain[K, V]):
 
 
 class BinarySearchTree(Chain[Comp_K, V]):
+
     def __init__(self) -> None:
         self.root: BSTNode[Comp_K, V] | None = None
         self.count: int = 0

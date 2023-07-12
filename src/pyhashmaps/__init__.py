@@ -1,9 +1,6 @@
-from .open_addressing import (
-    DoubleHashingHashMap,
-    LinearProbingHashMap,
-    QuadraticProbingHashMap,
-)
-from .separate_chaining import BSTHashMap, DynamicArrayHashMap, LinkedListHashMap
+from .open_addressing import (DoubleHashingHashMap, LinearProbingHashMap,
+                              QuadraticProbingHashMap)
+from .separate_chaining import BSTHashMap, LinkedListHashMap, DynamicArrayHashMap
 
 __all__ = [
     "DoubleHashingHashMap",
